@@ -10,7 +10,8 @@ import (
 // "encoding/csv"
 func Exist_check(path string) (error) {
 
-	if _, err := os.Stat(path); errors.Is(err, os.ErrNotExist) {
+	_, err := os.Stat(path)
+	if errors.Is(err, os.ErrNotExist) {
 		return errors.New("file does not exist")
 	} else if err != nil {
 		return fmt.Errorf("error checking file: %v", err)
@@ -20,6 +21,13 @@ func Exist_check(path string) (error) {
 }
 
 func Create_csv(filename string, fields []string) error { //path of file , fields slice
+
+	err := Exist_check(fmt.Sprintf("./db/%v",filename))
+
+	if err != nil && err.Error() != "file does not exist"{
+		return fmt.Errorf("the error is: %v",err)
+	}
+
 	f, err := os.OpenFile(fmt.Sprintf("./db/%v", filename), os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		return fmt.Errorf("error message : %v", err)
