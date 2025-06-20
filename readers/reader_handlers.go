@@ -4,12 +4,13 @@ import (
 	"os"
 )
 
-func Read_csv(path string) ([]byte , error) {
+func Read_csv(path string) (string , error) {
 
 	data, err := os.ReadFile(path)
+	var data_string string = string(data)
 	if err != nil {
-		return nil,err
+		return "",err
 	}
 
-	return data, nil
+	return data_string, nil
 }
