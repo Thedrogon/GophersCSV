@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
+	"log"
 
-	write "github.com/Thedrogon/GophersCSV/writers"
+	read "github.com/Thedrogon/GophersCSV/readers"
 	// "encoding/csv"
 	// "log"
 	// "os"
@@ -11,19 +12,37 @@ import (
 
 func main() {
 
-	if err := write.Create_csv("200.csv" , []string{"first_name","last_name","nick_name"}); err != nil{
-		fmt.Println(err)
+
+	data,err := read.Read_csv()
+	
+	data_new := string(data)
+	if err!= nil{
+		log.Fatalln(err)
 	}
 
-	if err := write.Add_data("201.csv" , [][]string{{"Sayan","Mukherjee","Sayan"}}); err!=nil{
-		fmt.Println(err)
-	} 
+	fmt.Println(data_new)
+	// if err := write.Create_csv("200.csv", []string{"first_name", "last_name", "nick_name"}); err != nil {
+	// 	fmt.Println(err)
+	// }
 
-
+	// if err := write.Add_data("200.csv", [][]string{
+	// 	{"cloud", "river", "stone"},
+	// 	{"forest", "sky", "breeze"},
+	// 	{"mountain", "wave", "tree"},
+	// 	{"shadow", "flame", "dust"},
+	// 	{"valley", "star", "wind"},
+	// 	{"ocean", "hill", "spark"},
+	// 	{"meadow", "moon", "rock"},
+	// 	{"desert", "lake", "fog"},
+	// 	{"canyon", "sun", "leaf"},
+	// 	{"glacier", "field", "mist"},
+	// }); err != nil {
+	// 	fmt.Println(err)
+	// }
 
 	// label_data := [][]string{
 	// 	{"first_name", "last_name", "nick_name"},
-		
+
 	// }
 	// w := csv.NewWriter(os.Stdout) //kind of writer object
 
