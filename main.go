@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	write "github.com/Thedrogon/GophersCSV/writers"
 	// "encoding/csv"
 	// "log"
@@ -9,7 +11,15 @@ import (
 
 func main() {
 
-	write.Create_csv("./db/200.csv" , []string{"first_name","last_name","nick_name"})
+	if err := write.Create_csv("200.csv" , []string{"first_name","last_name","nick_name"}); err != nil{
+		fmt.Println(err)
+	}
+
+	if err := write.Add_data("201.csv" , [][]string{{"Sayan","Mukherjee","Sayan"}}); err!=nil{
+		fmt.Println(err)
+	} 
+
+
 
 	// label_data := [][]string{
 	// 	{"first_name", "last_name", "nick_name"},
