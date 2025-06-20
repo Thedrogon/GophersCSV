@@ -1,16 +1,15 @@
 package readers
 
 import (
-	"log"
 	"os"
 )
 
-func Read_csv() ([]byte , error) {
+func Read_csv(path string) ([]byte , error) {
 
-	data, err := os.ReadFile("./db/200.csv")
+	data, err := os.ReadFile(path)
 	if err != nil {
-		log.Fatalln(err)
+		return nil,err
 	}
 
-	return data, err
+	return data, nil
 }
