@@ -9,8 +9,8 @@ import (
 
 //"encoding/csv"
 
-func Create_csv(path string, fields []string) { //path of file , fields slice 
-	f, err := os.OpenFile(path, os.O_CREATE|os.O_WRONLY, 0644)
+func Create_csv(filename string, fields []string) { //path of file , fields slice 
+	f, err := os.OpenFile(fmt.Sprintf("./db/%v",filename), os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -30,7 +30,7 @@ func Create_csv(path string, fields []string) { //path of file , fields slice
 
 
 func Add_data(filename string, fields [][]string) {
-	f, err := os.OpenFile(fmt.Sprintf("./db/${%v}",filename), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	f, err := os.OpenFile(fmt.Sprintf("./db/%v",filename), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		log.Fatal(err)
 	}
