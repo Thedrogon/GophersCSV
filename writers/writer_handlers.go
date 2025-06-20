@@ -20,15 +20,15 @@ func Exist_check(path string) (error) {
 	return nil
 }
 
-func Create_csv(filename string, fields []string) error { //path of file , fields slice
+func Create_csv(path string, fields []string) error { //path of file , fields slice
 
-	err := Exist_check(fmt.Sprintf("./db/%v",filename))
+	err := Exist_check(path)
 
 	if err != nil && err.Error() != "file does not exist"{
 		return fmt.Errorf("the error is: %v",err)
 	}
 
-	f, err := os.OpenFile(fmt.Sprintf("./db/%v", filename), os.O_CREATE|os.O_WRONLY, 0644)
+	f, err := os.OpenFile(path, os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		return fmt.Errorf("error message : %v", err)
 	}
@@ -47,15 +47,15 @@ func Create_csv(filename string, fields []string) error { //path of file , field
 	return nil
 }
 
-func Add_data(filename string, fields [][]string) error{
+func Add_data(path string, fields [][]string) error{
 
-	err  := Exist_check(fmt.Sprintf("./db/%v",filename))
+	err  := Exist_check(path)
 
 	if err != nil {
 		return fmt.Errorf("the error is: %v",err)
 	}
 
-	f, err := os.OpenFile(fmt.Sprintf("./db/%v", filename), os.O_APPEND|os.O_WRONLY, 0644)
+	f, err := os.OpenFile(path, os.O_APPEND|os.O_WRONLY, 0644)
 	if err != nil {
 		return fmt.Errorf("error message : %v", err)
 	}
