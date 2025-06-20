@@ -17,7 +17,7 @@ func Create_csv(filename string, fields []string) { //path of file , fields slic
 
 	defer f.Close()
 
-	w := csv.NewWriter(f)
+	w := csv.NewWriter(f)  //accepts the io.writer but in this case I have passed *os.file
 
 	w.Write(fields)
 	w.Flush()
